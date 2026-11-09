@@ -1,0 +1,27 @@
+/* Reseñas de lectores (dentro de la ventana de detalle del libro) */
+.reviews { display: flex; flex-direction: column; gap: 0.8rem; align-items: flex-start; margin-top: 0.4rem; }
+.reviews__body { display: flex; flex-direction: column; gap: 0.9rem; width: 100%; padding-top: 0.6rem; border-top: 1px solid var(--border-subtle); }
+.reviews__body h3 { font-size: 1.2rem; }
+
+.review-form textarea,
+.review-filter input[type='search'] {
+    background-color: var(--color-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-main);
+    font: inherit;
+    padding: 0.7rem 0.9rem;
+    resize: vertical;
+}
+.review-form textarea:focus-visible,
+.review-filter input[type='search']:focus-visible { outline: 2px solid var(--color-accent-orange); border-color: transparent; }
+.review-form [aria-invalid='true'] { border-color: #f87171; }
+.review-help { font-size: 0.8rem; }
+.review-check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+
+.review-filter { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: flex-end; width: 100%; }
+.review-filter .field { flex: 1 1 160px; }
+.review-filter__actions { display: flex; gap: 0.6rem; }
+
+.reviews__list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; width: 100%; }
+.review { background-color: var(--color-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.8rem 1rem; display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-start; }
