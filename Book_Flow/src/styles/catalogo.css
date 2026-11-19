@@ -1,4 +1,0 @@
-
-/* El catálogo usa solo los componentes compartidos:
-   buscador, filtros, tarjetas y paginación (components/browse). */
-.catalog { max-width: var(--max-width); margin: 0 auto; padding: 2rem 1rem; }
