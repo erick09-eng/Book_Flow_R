@@ -1,18 +1,18 @@
 # Bitácora Principal - BookFlow (3er Corte)
 
-## 📦 Identificación
+## Identificación
 - **Proyecto**: BookFlow - Gestión de biblioteca personal
-- **Integrantes**: 
+- **Integrantes**:
   - Erick Sebastián Bolívar Arboleda
   - Andrés Felipe Galvis Tellez
 - **Repositorio 3er corte (React)**: https://github.com/erick09-eng/Book_Flow_R
 - **Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
 - **URL Producción**: https://book-flow-r.vercel.app/
-- **Commit entrega**: `4252bbf` (main branch)
+- **Commit entrega**: `7f38f95` (branch `feature/erick`)
 
 ---
 
-## 🔄 Qué se migró (Vanilla JS → React + Vite)
+## Qué se migró (Vanilla JS → React + Vite)
 
 | Antes (presentation/) | Después (src/) | Comentario |
 |----------------------|----------------|------------|
@@ -25,7 +25,7 @@
 
 ---
 
-## 👥 Aportes por integrante
+## Aportes por integrante
 
 | Integrante | Qué hizo |
 |------------|----------|
@@ -34,7 +34,7 @@
 
 ---
 
-## 🎯 Decisiones técnicas clave
+## Decisiones técnicas clave
 
 1. **Context + useState**: Se usó `useState` en `AppContext` por simplicidad (sesión, modal, toast). No hay estado global complejo.
 2. **Hooks personalizados**: `useBookActions`, `useCatalogView`, `useLocale`, `useReviews` — separan lógica de UI y son testeables.
@@ -46,7 +46,7 @@
 
 ---
 
-## 🐛 Problemas resueltos
+## Problemas resueltos
 
 | Problema | Solución |
 |----------|----------|
@@ -59,7 +59,7 @@
 
 ---
 
-## ⏳ Pendientes / Mejora futura
+## Pendientes / Mejora futura
 
 - [ ] Tests E2E (Cypress/Playwright) para flujos críticos
 - [ ] Code-splitting (`React.lazy`) para reducir bundle >500KB
@@ -69,7 +69,7 @@
 
 ---
 
-## ✅ Checklist entrega (guía 3er corte)
+## Checklist entrega (guía 3er corte)
 
 | Requisito | Estado |
 |-----------|--------|
@@ -93,7 +93,7 @@
 | Localización (Intl/i18n) | ✅ (`useLocale`) |
 | Test unitario regla real (`validateReview`) | ✅ (18 tests passing) |
 | `vercel.json` con rewrite SPA | ✅ |
-| Variables `VITE_` en Vercel | ✅ (documentado) |
+| Variables `VITE_*` en Vercel | ✅ (documentado) |
 | Supabase Redirect URL autorizada | ✅ (documentado) |
 | `docs/bitacora.md` | ✅ (este archivo) |
 | README con identificación, ejecución, recorrido | ✅ |
@@ -103,7 +103,7 @@
 
 ---
 
-## 📅 Historial de commits relevantes
+## Historial de commits relevantes
 
 ```
 git log --oneline -20
