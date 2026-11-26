@@ -1,10 +1,10 @@
 import './reviews.css';
 import { useId, useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { useLocale } from '../../hooks/useLocale';
 import { useToggle } from '../../hooks/useToggle';
 import { useReviews } from '../../hooks/useReviews';
 import { useSupabaseSession } from '../../hooks/useSupabaseSession';
-import { fmt } from '../../hooks/useBookActions';
 import { MAX_ROWS, deleteReview } from '../../service/reviewApi';
 import { averageRating, filterReviews } from '../../service/reviewService';
 import ReviewForm from './ReviewForm';
@@ -28,6 +28,7 @@ export default function ReviewsPanel({ book }) {
 
 function ReviewsBody({ id, book }) {
   const { user, openModal } = useApp();
+  const { formatDate } = useLocale();
   const session = useSupabaseSession();           // sesión de Supabase Auth (la que evalúa RLS)
   const filters = useToggle(false);
   const [rating, setRating] = useState('');       // criterio remoto: viaja a la API
@@ -121,7 +122,7 @@ function ReviewsBody({ id, book }) {
             <ul className="reviews__list">
               {results.map((r) => (
                 <li key={r.id} className="review">
-                  <p><strong>{r.author}</strong> <span className="muted">· ★ {r.rating} · {fmt(r.date)}</span></p>
+                  <p><strong>{r.author}</strong> <span className="muted">· ★ {r.rating} · {formatDate(r.date)}</span></p>
                   <p>{r.comment}</p>
                   {r.recommend && <span className="tag">Lo recomienda</span>}
                   {myId && r.userId === myId && (

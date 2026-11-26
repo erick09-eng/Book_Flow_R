@@ -1,26 +1,32 @@
-/* Configuración de servicios externos. */
+/* Configuración de servicios externos. Lee de import.meta.env (Vite inyecta .env.local). */
 import { createClient } from '@supabase/supabase-js';
 
-export const CONFIG = {
-  // Inicio de sesión con Google: ID de cliente OAuth tipo "Aplicación web"
-  // Debes obtenerlo en https://console.cloud.google.com/ (APIs y servicios > Credenciales)
-  GOOGLE_CLIENT_ID: '647541497777-0v0fvcaab6c3hkjunra4jibgpm3lknu5.apps.googleusercontent.com',
+function requiredEnv(key) {
+  const val = import.meta.env[key];
+  if (!val) console.warn(`[Config] Variable de entorno faltante: ${key}`);
+  return val;
+}
 
-  // Envío de correos para recuperar la contraseña (EmailJS)
+export const CONFIG = {
+  // Google OAuth: ID de cliente tipo "Aplicación web" (https://console.cloud.google.com/)
+  GOOGLE_CLIENT_ID: requiredEnv('VITE_GOOGLE_CLIENT_ID'),
+
+  // EmailJS para recuperación de contraseña (opcional)
   EMAILJS: {
-    serviceId: '',                 // ej: 'service_xxxxxxx'
-    templateId: '',                // ej: 'template_xxxxxxx'
-    publicKey: '',                 // ej: 'AbCdEfGhIjKlMnOp'
+    serviceId: requiredEnv('VITE_EMAILJS_SERVICE_ID') || '',
+    templateId: requiredEnv('VITE_EMAILJS_TEMPLATE_ID') || '',
+    publicKey: requiredEnv('VITE_EMAILJS_PUBLIC_KEY') || '',
   },
 
-  // Configuración de Supabase
+  // Supabase (reseñas con RLS)
   SUPABASE: {
-    // Clase 4: se leen de .env.local (ver .env.example). Si no existe, se usan los valores del segundo corte.
-    url: import.meta.env.VITE_SUPABASE_URL || 'https://bdjwpdwlheocnenszprh.supabase.co',
-    anonKey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_XeMvR31qNv_JNiwoD_Rr5w_47Lresro',
-    reviewsTable: import.meta.env.VITE_TABLA_RESENAS || 'reviews',
+    url: requiredEnv('VITE_SUPABASE_URL'),
+    anonKey: requiredEnv('VITE_SUPABASE_PUBLISHABLE_KEY'),
+    reviewsTable: requiredEnv('VITE_TABLA_RESENAS') || 'reviews',
   },
 };
 
-// Cliente de Supabase (ahora viene del paquete npm en vez del CDN)
-export const supabaseClient = createClient(CONFIG.SUPABASE.url, CONFIG.SUPABASE.anonKey);
+// Cliente de Supabase
+export const supabaseClient = CONFIG.SUPABASE.url && CONFIG.SUPABASE.anonKey
+  ? createClient(CONFIG.SUPABASE.url, CONFIG.SUPABASE.anonKey)
+  : null;

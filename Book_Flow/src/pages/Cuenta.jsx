@@ -1,6 +1,7 @@
 import '../styles/cuenta.css';
 import { useApp } from '../context/AppContext';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useLocale } from '../hooks/useLocale';
 import { users } from '../service/usersService';
 import { loans } from '../service/loanService';
 import { favorites } from '../service/favoriteService';
@@ -9,6 +10,7 @@ import AccountTabs from '../components/tabs/AccountTabs';
 export default function Cuenta() {
   usePageTitle('BookFlow - Mi perfil');
   const { openModal, signedOut } = useApp();
+  const { formatDate } = useLocale();
   const u = users.current();
   if (!u) return null;
 
@@ -26,7 +28,7 @@ export default function Cuenta() {
         </div>
         <dl>
           <div className="account__row"><dt>Correo</dt><dd id="u-email">{u.email}</dd></div>
-          <div className="account__row"><dt>Miembro desde</dt><dd id="u-since">{new Date(u.since).toLocaleDateString('es', { year: 'numeric', month: 'long', day: 'numeric' })}</dd></div>
+          <div className="account__row"><dt>Miembro desde</dt><dd id="u-since">{formatDate(u.since, { year: 'numeric', month: 'long', day: 'numeric' })}</dd></div>
         </dl>
         <div className="account__actions">
           <button className="btn btn--primary" onClick={() => openModal('edit')}>Modificar datos</button>

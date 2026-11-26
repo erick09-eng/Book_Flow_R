@@ -1,5 +1,5 @@
-import './header.css';
-import { Link, useLocation } from 'react-router-dom';
+import styles from './header.module.css';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 
 const UserIcon = () => (
@@ -8,27 +8,51 @@ const UserIcon = () => (
   </svg>
 );
 
-// Header compartido: se edita aquí y cambia en todas las vistas
 export default function Header() {
   const { user, openModal } = useApp();
   const { pathname } = useLocation();
 
-  const current = (paths) => (paths.includes(pathname) ? 'page' : undefined);
-  // Icono / "Mi perfil": con sesión navega al perfil; sin sesión abre el login
+  const isCatalogoActive = pathname === '/catalogo' || pathname.startsWith('/libro/');
+  const isCuentaActive = pathname === '/cuenta' || pathname === '/biblioteca';
+
   const profileClick = (e) => { if (!user) { e.preventDefault(); openModal('auth'); } };
 
   return (
-    <header className="header">
-      <div className="header__container">
-        <Link to="/" className="header__logo">BookFlow</Link>
-        <nav className="header__nav">
-          <Link to="/" aria-current={current(['/'])}>Inicio</Link>
-          <Link to="/catalogo" aria-current={current(['/catalogo'])}>Catálogo</Link>
-          <Link to="/cuenta" onClick={profileClick} aria-current={current(['/cuenta', '/biblioteca'])}>Mi perfil</Link>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <NavLink to="/" className={styles.logo} aria-current={pathname === '/' ? 'page' : undefined}>BookFlow</NavLink>
+        <nav className={styles.nav}>
+          <NavLink
+            to="/"
+            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
+            aria-current={pathname === '/' ? 'page' : undefined}
+          >
+            Inicio
+          </NavLink>
+          <NavLink
+            to="/catalogo"
+            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
+            aria-current={isCatalogoActive ? 'page' : undefined}
+          >
+            Catálogo
+          </NavLink>
+          <NavLink
+            to="/cuenta"
+            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
+            onClick={profileClick}
+            aria-current={isCuentaActive ? 'page' : undefined}
+          >
+            Mi perfil
+          </NavLink>
         </nav>
-        <Link to="/cuenta" onClick={profileClick} className={'header__user ' + (user ? 'is-on' : '')} aria-label={user ? 'Mi perfil' : 'Iniciar sesión'}>
+        <NavLink
+          to="/cuenta"
+          onClick={profileClick}
+          className={`${styles.user} ${user ? styles.userOn : ''}`}
+          aria-label={user ? 'Mi perfil' : 'Iniciar sesión'}
+        >
           <UserIcon />
-        </Link>
+        </NavLink>
       </div>
     </header>
   );

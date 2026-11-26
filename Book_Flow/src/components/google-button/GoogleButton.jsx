@@ -10,13 +10,15 @@ import { decodeJwt, loadGoogle, setGoogleHandler } from '../../service/googleSer
 export default function GoogleButton({ id }) {
   const { toast, signedIn } = useApp();
   const ref = useRef(null);
-  // Siempre se usa la versión más reciente de toast/signedIn sin volver a dibujar el botón de Google
   const latest = useRef({ toast, signedIn });
-  latest.current = { toast, signedIn };
 
   useEffect(() => {
-    const toast = (...a) => latest.current.toast(...a);
-    const signedIn = () => latest.current.signedIn();
+    latest.current = { toast, signedIn };
+  }, [toast, signedIn]);
+
+  useEffect(() => {
+    const toastFn = (...a) => latest.current.toast(...a);
+    const signedInFn = () => latest.current.signedIn();
     const el = ref.current;
     if (!el) return undefined;
     let cancelled = false;
@@ -24,23 +26,21 @@ export default function GoogleButton({ id }) {
     function onGoogle({ credential }) {
       try {
         const p = decodeJwt(credential);
-        if (p.email_verified === false) return toast('Tu correo de Google no está verificado.', false);
+        if (p.email_verified === false) return toastFn('Tu correo de Google no está verificado.', false);
         const r = users.loginWithGoogle({ name: p.name, email: p.email });
         if (r.ok) {
-          // Replicar perfil de Google en Supabase (no bloqueante)
           if (supabase.isReady) {
             supabase.upsertProfile({ email: p.email, name: p.name, since: new Date().toISOString(), google: true }).catch(() => {});
           }
-          // Sesión de Supabase Auth con el mismo token de Google: la necesitan las reseñas (RLS). No bloquea el ingreso.
           supabaseClient.auth.signInWithIdToken({ provider: 'google', token: credential }).catch(() => {});
-          signedIn();
-        } else toast(r.error, false);
-      } catch { toast('No se pudo iniciar sesión con Google.', false); }
+          signedInFn();
+        } else toastFn(r.error, false);
+      } catch { toastFn('No se pudo iniciar sesión con Google.', false); }
     }
 
     if (!CONFIG.GOOGLE_CLIENT_ID) {
       el.innerHTML = '<button type="button" class="btn btn--ghost btn--block">Continuar con Google</button>';
-      el.querySelector('button').addEventListener('click', () => toast('Falta configurar GOOGLE_CLIENT_ID en service/config.js', false));
+      el.querySelector('button').addEventListener('click', () => toastFn('Falta configurar VITE_GOOGLE_CLIENT_ID en .env.local', false));
       return () => { el.innerHTML = ''; };
     }
 

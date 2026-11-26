@@ -1,6 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { users } from '../service/usersService';
+import { loans } from '../service/loanService';
+import { favorites } from '../service/favoriteService';
 import { supabaseClient } from '../service/config';
 
 /* Estado compartido de la app: sesión, ventana emergente (modal) y aviso (toast).
@@ -34,13 +36,17 @@ export function AppProvider({ children }) {
   const signedIn = useCallback(() => { setModal(null); refresh(); navigate('/cuenta'); }, [refresh, navigate]);
   // Tras cerrar sesión o eliminar la cuenta se vuelve al inicio
   const signedOut = useCallback(() => {
+    const currentUser = users.current();
+    if (currentUser?.email) {
+      loans.removeAllForUser(currentUser.email);
+      favorites.removeAllForUser(currentUser.email);
+    }
     supabaseClient.auth.signOut().catch(() => {}); // cierra también la sesión de Supabase (reseñas)
     setModal(null); navigate('/'); refresh();
   }, [refresh, navigate]);
 
   const value = useMemo(() => ({
     user, tick, modal, toastState, refresh, toast, openModal, closeModal, signedIn, signedOut,
-    openBook: modal?.type === 'book' ? modal.id : null,
   }), [user, tick, modal, toastState, refresh, toast, openModal, closeModal, signedIn, signedOut]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
