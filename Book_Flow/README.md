@@ -1,6 +1,10 @@
 # BookFlow (React + Vite)
 
-repo segundo corte(Vanilla JS): https://github.com/erick09-eng/Book_Flow
+> **🔗 URL de Producción**: https://book-flow-r.vercel.app/
+> **📦 Repositorio 3er corte (React)**: https://github.com/erick09-eng/book-flow-react
+> **📦 Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
+> **📋 Bitácora completa**: [docs/bitacora.md](docs/bitacora.md)
+> **📌 Commit entrega**: `main` (último commit)
 
 ## Instalar y ejecutar
 ```
@@ -40,7 +44,7 @@ npm test           # Tests unitarios (node --test)
 ## Despliegue en Vercel
 1. Conecta el repo en Vercel (Framework: Vite).
 2. En **Settings → Environment Variables**, añade las variables de `.env.example` (prefijo `VITE_`).
-3. En **Supabase → Authentication → URL Configuration**, añade la URL de Vercel (`https://tu-app.vercel.app`) a **Site URL** y a **Redirect URLs**.
+3. En **Supabase → Authentication → URL Configuration**, añade la URL de Vercel (`https://book-flow-r.vercel.app`) a **Site URL** y a **Redirect URLs** (`https://book-flow-r.vercel.app/acceso`).
 4. Deploy automático en cada push a `main`.
 
 ## Bitácora - Clase 5
