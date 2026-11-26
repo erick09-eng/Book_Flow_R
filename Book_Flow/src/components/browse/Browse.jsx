@@ -2,10 +2,11 @@ import './browse.css';
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
+import { useLocale } from '../../hooks/useLocale';
 import { books } from '../../service/bookService';
 import { loans } from '../../service/loanService';
 import { favorites } from '../../service/favoriteService';
-import { fmt } from '../../hooks/useBookActions';
+import { useCatalogView } from '../../hooks/useCatalogView';
 import ProductCard from '../product-card/ProductCard';
 import Filters from './Filters';
 import SearchBar from './SearchBar';
@@ -16,8 +17,10 @@ const SIZE = 8;
 // Catálogo y biblioteca comparten buscador, filtros, orden y paginación
 export default function Browse({ isLib = false, tab = 'loans' }) {
   const { user } = useApp();
+  const { formatDate } = useLocale();
   const [params] = useSearchParams();
-  const allBooks = books.all() || [];
+  const { view, toggleView } = useCatalogView();
+  const allBooks = useMemo(() => books.all() || [], []);
   const genres = useMemo(() => [...new Set(allBooks.map((b) => b && b.genre).filter((g) => g && g.length > 0))], [allBooks]);
 
   const [q, setQ] = useState(params.get('q') || '');
@@ -36,7 +39,7 @@ export default function Browse({ isLib = false, tab = 'loans' }) {
   // Libros de origen: todo el catálogo, los préstamos activos o los favoritos
   const local = !isLib ? books.all().map((b) => ({ b }))
     : tab === 'favs' ? favorites.list(user.email).map((b) => ({ b }))
-    : loans.active(user.email).map((l) => ({ b: books.get(l.bookId), note: 'Vence el' + fmt(l.dueDate) }));
+    : loans.active(user.email).map((l) => ({ b: books.get(l.bookId), note: 'Vence el ' + formatDate(l.dueDate) }));
 
   const query = q.trim().toLowerCase();
   const list = local.filter(({ b }) => {
@@ -62,9 +65,9 @@ export default function Browse({ isLib = false, tab = 'loans' }) {
         rating={min} onRating={reset(setMin)} onClear={clear}
       />
       <section>
-        <SearchBar q={q} onQ={reset(setQ)} sort={sort} onSort={reset(setSort)} />
+        <SearchBar q={q} onQ={reset(setQ)} sort={sort} onSort={reset(setSort)} view={view} onViewToggle={toggleView} />
         <p className="muted" id="count">{list.length} {list.length === 1 ? 'libro' : 'libros'}</p>
-        <div className="grid" id="grid">
+        <div className={`grid ${view === 'list' ? 'grid--list' : ''}`} id="grid">
           {visible.length
             ? visible.map(({ b, note }) => <ProductCard key={b.id} book={b} note={note} />)
             : <p className="muted empty">{emptyText}</p>}

@@ -1,5 +1,6 @@
 import { useApp } from '../../context/AppContext';
-import { useBookActions, fmt } from '../../hooks/useBookActions';
+import { useBookActions } from '../../hooks/useBookActions';
+import { useLocale } from '../../hooks/useLocale';
 import { books } from '../../service/bookService';
 import { loans } from '../../service/loanService';
 import { favorites } from '../../service/favoriteService';
@@ -16,6 +17,7 @@ const Spec = ({ k, v }) => <div className="spec"><dt>{k}</dt><dd>{v ?? '—'}</d
 // Ventana emergente con todos los detalles del libro
 export default function BookModal({ id }) {
   const { user } = useApp();
+  const { formatDate } = useLocale();
   const actions = useBookActions();
   const b = books.get(id);
   if (!b) return null;
@@ -49,8 +51,8 @@ export default function BookModal({ id }) {
           <Spec k="Año de publicación" v={b.year} />
           <Spec k="Editorial" v={b.publisher} />
           <Spec k="ISBN" v={b.isbn} />
-          {loan && <Spec k="Fecha de préstamo" v={fmt(loan.loanDate)} />}
-          {loan && <Spec k="Fecha de devolución" v={fmt(loan.dueDate)} />}
+          {loan && <Spec k="Fecha de préstamo" v={formatDate(loan.loanDate)} />}
+          {loan && <Spec k="Fecha de devolución" v={formatDate(loan.dueDate)} />}
         </dl>
         <div className="card__actions">
           {loan ? (

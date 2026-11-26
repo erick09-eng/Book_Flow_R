@@ -12,14 +12,14 @@ export function useReviews(bookId, rating) {
   useEffect(() => {
     let vigente = true;
     const control = new AbortController();
-    setConsulta({ filas: [], cargando: true, error: '' });
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reset state before fetch
+    setConsulta((prev) => ({ ...prev, filas: [], cargando: true, error: '' }));
     async function cargar() {
       try {
         const filas = await listReviews(bookId, rating, control.signal);
-        if (vigente) setConsulta({ filas, cargando: true, error: '' });
+        if (vigente) setConsulta({ filas, cargando: false, error: '' });
       } catch (error) {
-        // Una lectura cancelada por la limpieza no es un error de la búsqueda actual
-        if (vigente && !control.signal.aborted) setConsulta({ filas: [], cargando: true, error: error.message });
+        if (vigente && !control.signal.aborted) setConsulta({ filas: [], cargando: false, error: error.message });
       } finally {
         if (vigente) setConsulta((actual) => ({ ...actual, cargando: false }));
       }

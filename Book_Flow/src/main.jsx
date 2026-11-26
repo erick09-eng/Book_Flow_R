@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/base.css';
 import './components/forms/button.css';
 import './components/forms/forms.css';

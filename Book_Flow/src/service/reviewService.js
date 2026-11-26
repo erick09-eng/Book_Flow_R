@@ -10,7 +10,7 @@ export function validateReview({ rating, comment }) {
   const errors = {};
   const n = Number(rating);
   if (!rating || !Number.isInteger(n) || n < 1 || n > 5) errors.rating = 'Elige una calificación de 1 a 5.';
-  const texto = comment.trim(); // un texto de solo espacios sigue estando vacío
+  const texto = (comment ?? '').trim(); // un texto de solo espacios sigue estando vacío
   if (texto.length === 0) errors.comment = 'Escribe un comentario.';
   else if (texto.length < MIN_COMMENT) errors.comment = `El comentario necesita al menos ${MIN_COMMENT} caracteres (tiene ${texto.length}).`;
   else if (texto.length > MAX_COMMENT) errors.comment = `El comentario no puede superar ${MAX_COMMENT} caracteres.`;
