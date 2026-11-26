@@ -1,5 +1,7 @@
 # BookFlow (React + Vite)
 
+repo segundo corte(Vanilla JS): https://github.com/erick09-eng/Book_Flow
+
 ## Instalar y ejecutar
 ```
 npm install
