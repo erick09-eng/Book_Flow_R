@@ -1,11 +1,11 @@
 # BookFlow (React + Vite)
 
 > **🔗 URL de Producción**: https://book-flow-r.vercel.app/
-> **📦 Repositorio 3er corte (React)**: https://github.com/erick09-eng/book-flow-react
+> **📦 Repositorio 3er corte (React)**: https://github.com/erick09-eng/Book_Flow_R
 > **📦 Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
 > **📋 Bitácora completa**: [docs/bitacora.md](docs/bitacora.md)
 > **🎯 Presentación interactiva**: [docs/presentacion.html](docs/presentacion.html)
-> **📌 Commit entrega**: `4252bbf` (branch `feature/erick`)
+> **📌 Commit entrega**: `e9beae6` (branch `feature/erick`)
 
 **Integrantes:**
 - Erick Sebastián Bolívar Arboleda

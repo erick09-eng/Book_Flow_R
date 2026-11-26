@@ -5,7 +5,7 @@
 - **Integrantes**: 
   - Erick Sebastián Bolívar Arboleda
   - Andrés Felipe Galvis Tellez
-- **Repositorio 3er corte (React)**: https://github.com/erick09-eng/book-flow-react
+- **Repositorio 3er corte (React)**: https://github.com/erick09-eng/Book_Flow_R
 - **Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
 - **URL Producción**: https://book-flow-r.vercel.app/
 - **Commit entrega**: `4252bbf` (main branch)
