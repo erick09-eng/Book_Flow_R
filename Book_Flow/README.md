@@ -93,8 +93,7 @@ Presentación (Pages, Components)
 | Repositorio (3er corte) | https://github.com/erick09-eng/Book_Flow_R |
 | Repositorio (2do corte - Vanilla JS) | https://github.com/erick09-eng/Book_Flow |
 | Bitácora técnica | https://github.com/erick09-eng/Book_Flow_R/blob/feature/erick/docs/bitacora.md |
-| Presentación interactiva (Netlify) | https://cozy-gecko-c49e61.netlify.app/presentacion.html |
-| Presentación interactiva (GitHub Pages) | https://erick09-eng.github.io/Book_Flow_R/presentacion.html |
+| Presentación interactiva | https://cozy-gecko-c49e61.netlify.app/presentacion.html |
 
 ---
 
@@ -138,7 +137,6 @@ npm run dev
 
 **Opción 1: Link público (recomendado)**
 - Netlify: https://cozy-gecko-c49e61.netlify.app/presentacion.html
-- GitHub Pages: https://erick09-eng.github.io/Book_Flow_R/presentacion.html
 - Se abre en cualquier celular/PC sin instalar nada.
 
 **Opción 2: Local (Live Server)**
