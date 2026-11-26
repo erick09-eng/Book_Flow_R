@@ -4,8 +4,9 @@
 > **📦 Repositorio 3er corte (React)**: https://github.com/erick09-eng/Book_Flow_R
 > **📦 Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
 > **📋 Bitácora completa**: [docs/bitacora.md](docs/bitacora.md)
-> **🎯 Presentación interactiva**: [docs/presentacion.html](docs/presentacion.html)
-> **📌 Commit entrega**: `e9beae6` (branch `feature/erick`)
+> **🎯 Presentación interactiva (Netlify)**: https://cozy-gecko-c49e61.netlify.app/presentacion.html
+> **🎯 Presentación interactiva (GitHub Pages)**: https://erick09-eng.github.io/Book_Flow_R/presentacion.html
+> **📌 Commit entrega**: `9bded54` (branch `feature/erick`)
 
 **Integrantes:**
 - Erick Sebastián Bolívar Arboleda
@@ -28,6 +29,41 @@ npm run lint       # ESLint (revisa código)
 npm run format     # Prettier (formatea código)
 npm test           # Tests unitarios (node --test)
 ```
+
+## 🎯 Presentación interactiva (cómo verla)
+
+### Opción 1: Link público (recomendado para el profe / celular)
+- **Netlify**: https://cozy-gecko-c49e61.netlify.app/presentacion.html
+- **GitHub Pages**: https://erick09-eng.github.io/Book_Flow_R/presentacion.html
+- Se abre en cualquier celular/PC sin instalar nada, solo click en el link.
+
+### Opción 2: Live Server (local, para desarrollo)
+```bash
+# Opción A: VS Code Live Server (extensión)
+# 1. Instala extensión "Live Server" en VS Code
+# 2. Click derecho en docs/presentacion.html → "Open with Live Server"
+# 3. Se abre en http://127.0.0.1:5500/presentacion.html
+
+# Opción B: npx serve (sin extensiones)
+cd docs
+npx serve -p 3000
+# Abre http://localhost:3000/presentacion.html
+
+# Opción C: Python (si lo tienes)
+cd docs
+python -m http.server 8000
+# Abre http://localhost:8000/presentacion.html
+```
+
+### Controles de la presentación
+| Acción | Teclado | Touch / Móvil |
+|--------|---------|---------------|
+| Slide siguiente | `↓` `Page Down` `Espacio` | Swipe izquierda |
+| Slide anterior | `↑` `Page Up` | Swipe derecha |
+| Primer slide | `Home` | Doble tap arriba |
+| Último slide | `End` | Doble tap abajo |
+| Ir a slide | Click en nav superior / dots laterales | Tap en nav / dots laterales |
+| Pantalla completa | `F11` | Menú navegador → "Sitio de escritorio" |
 
 ## Variables de entorno (.env.local)
 | Variable | Descripción | Requerida |
