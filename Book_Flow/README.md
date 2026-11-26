@@ -4,7 +4,12 @@
 > **📦 Repositorio 3er corte (React)**: https://github.com/erick09-eng/book-flow-react
 > **📦 Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
 > **📋 Bitácora completa**: [docs/bitacora.md](docs/bitacora.md)
-> **📌 Commit entrega**: `main` (último commit)
+> **🎯 Presentación interactiva**: [docs/presentacion.html](docs/presentacion.html)
+> **📌 Commit entrega**: `4252bbf` (branch `feature/erick`)
+
+**Integrantes:**
+- Erick Sebastián Bolívar Arboleda
+- Andrés Felipe Galvis Tellez
 
 ## Instalar y ejecutar
 ```
