@@ -1,16 +1,18 @@
 # Bitácora Principal - BookFlow (3er Corte)
 
-##  Identificación
+## Identificación
 - **Proyecto**: BookFlow - Gestión de biblioteca personal
-- **Integrantes**: [Tus nombres aquí]
+- **Integrantes**:
+  - Erick Sebastián Bolívar Arboleda
+  - Andrés Felipe Galvis Tellez
 - **Repositorio 3er corte (React)**: https://github.com/erick09-eng/Book_Flow_R
 - **Repositorio 2do corte (Vanilla JS)**: https://github.com/erick09-eng/Book_Flow
-- **URL Producción**: https://book-flow-xxx.vercel.app
-- **Commit entrega**: `git rev-parse HEAD` (completar al final)
+- **URL Producción**: https://book-flow-r.vercel.app/
+- **Commit entrega**: `7f38f95` (branch `feature/erick`)
 
 ---
 
-##  Qué se migró (Vanilla JS → React + Vite)
+## Qué se migró (Vanilla JS → React + Vite)
 
 | Antes (presentation/) | Después (src/) | Comentario |
 |----------------------|----------------|------------|
@@ -23,19 +25,18 @@
 
 ---
 
-## 👥 Aportes por integrante
+## Aportes por integrante
+
 | Integrante | Qué hizo |
 |------------|----------|
-| [Nombre 1] | Migración routing, páginas Detalle/Acceso/404, NavLink activo |
-| [Nombre 2] | CSS Modules (Header), react-bootstrap Alert, localStorage vista |
-| [Nombre 3] | Limpieza sesión, test unitario validateReview, i18n (useLocale) |
-| [Nombre 4] | Deploy config (vercel.json, .env.example), README, bitácora |
+| **Erick Sebastián Bolívar Arboleda** | Migración routing, páginas Detalle/Acceso/404, NavLink activo, CSS Modules, react-bootstrap Alert, localStorage vista, limpieza sesión, test unitario, i18n (useLocale) |
+| **Andrés Felipe Galvis Tellez** | Deploy config (vercel.json, .env.example), README, bitácora, Supabase RLS, Google Auth, componentes reutilizables |
 
 ---
 
-##  Decisiones técnicas clave
+## Decisiones técnicas clave
 
-1. **Context + useReducer vs useState**: Se usó `useState` en `AppContext` por simplicidad (sesión, modal, toast). No hay estado global complejo.
+1. **Context + useState**: Se usó `useState` en `AppContext` por simplicidad (sesión, modal, toast). No hay estado global complejo.
 2. **Hooks personalizados**: `useBookActions`, `useCatalogView`, `useLocale`, `useReviews` — separan lógica de UI y son testeables.
 3. **Supabase solo para reseñas**: Préstamos y favoritos en `localStorage` (datos no sensibles, offline-first). Reseñas en Supabase con RLS (datos compartidos, requieren auth).
 4. **Google OAuth → Supabase Auth**: Token de Google se pasa a `supabaseClient.auth.signInWithIdToken()` para que RLS funcione en reseñas.
@@ -45,7 +46,7 @@
 
 ---
 
-##  Problemas resueltos
+## Problemas resueltos
 
 | Problema | Solución |
 |----------|----------|
@@ -58,7 +59,7 @@
 
 ---
 
-##  Pendientes / Mejora futura
+## Pendientes / Mejora futura
 
 - [ ] Tests E2E (Cypress/Playwright) para flujos críticos
 - [ ] Code-splitting (`React.lazy`) para reducir bundle >500KB
@@ -68,44 +69,48 @@
 
 ---
 
-##  Checklist entrega (guía 3er corte)
+## Checklist entrega (guía 3er corte)
 
 | Requisito | Estado |
 |-----------|--------|
-| React + Vite + JSX | listo |
-| Componentes reutilizables + props | listo (Header, ProductCard, ModalRoot, Toast, Tabs, Forms) |
-| Estado React + formulario controlado + validaciones | listo (Acceso, ReviewForm) |
-| Hook propio con lógica separada | listo (`useBookActions`, `useCatalogView`, `useLocale`, `useReviews`) |
-| Efecto para sincronizar externo | listo (`useReviews` → AbortController + API) |
-| CRUD entidad principal (reseñas) en Supabase | listo Create/Read/Update/Delete + RLS |
-| Búsqueda/filtro en API + loading/error/retry/empty | listo(`useReviews` + `ReviewFilter`) |
-| Detalle por ID real + recarga persiste | listo `/libro/:id` |
-| Entrada pública (`/`) + página acceso (`/acceso`) | listo |
-| Rutas privadas listado (`/biblioteca`) + detalle (`/libro/:id`) | listo |
-| Menú con sección activa (NavLink + subrayado) | listo |
-| Vista 404 | listo (`NotFound.jsx`) |
-| Context para sesión compartida | listo (`AppContext`) |
-| React Router (pantalla) + RLS Supabase (datos) | listo |
-| CSS Modules | listo (`header.module.css`) |
-| Librería visual (react-bootstrap Alert) | listo (`Detalle.jsx`) |
-| Preferencia localStorage (vista catálogo) | listo (`useCatalogView`) |
-| Localización (Intl/i18n) | listo (`useLocale`) |
-| Test unitario regla real (`validateReview`) | listo (18 tests passing) |
-| `vercel.json` con rewrite SPA | listo |
-| Variables `VITE_` en Vercel | listo (documentado) |
-| Supabase Redirect URL autorizada | listo (documentado) |
-| `docs/bitacora.md` | listo (este archivo) |
-| README con identificación, ejecución, recorrido | listo |
-| `.env.example` sin valores reales | listo |
-| `.gitignore` excluye `node_modules`, `dist`, `.env.local` | listo |
-| Repo privado + acceso al profe |  pendiente dar acceso |
+| React + Vite + JSX | ✅ |
+| Componentes reutilizables + props | ✅ (Header, ProductCard, ModalRoot, Toast, Tabs, Forms) |
+| Estado React + formulario controlado + validaciones | ✅ (Acceso, ReviewForm) |
+| Hook propio con lógica separada | ✅ (`useBookActions`, `useCatalogView`, `useLocale`, `useReviews`) |
+| Efecto para sincronizar externo | ✅ (`useReviews` → AbortController + API) |
+| CRUD entidad principal (reseñas) en Supabase | ✅ Create/Read/Update/Delete + RLS |
+| Búsqueda/filtro en API + loading/error/retry/empty | ✅ (`useReviews` + `ReviewFilter`) |
+| Detalle por ID real + recarga persiste | ✅ `/libro/:id` |
+| Entrada pública (`/`) + página acceso (`/acceso`) | ✅ |
+| Rutas privadas listado (`/biblioteca`) + detalle (`/libro/:id`) | ✅ |
+| Menú con sección activa (NavLink + subrayado) | ✅ |
+| Vista 404 | ✅ (`NotFound.jsx`) |
+| Context para sesión compartida | ✅ (`AppContext`) |
+| React Router (pantalla) + RLS Supabase (datos) | ✅ |
+| CSS Modules | ✅ (`header.module.css`) |
+| Librería visual (react-bootstrap Alert) | ✅ (`Detalle.jsx`) |
+| Preferencia localStorage (vista catálogo) | ✅ (`useCatalogView`) |
+| Localización (Intl/i18n) | ✅ (`useLocale`) |
+| Test unitario regla real (`validateReview`) | ✅ (18 tests passing) |
+| `vercel.json` con rewrite SPA | ✅ |
+| Variables `VITE_*` en Vercel | ✅ (documentado) |
+| Supabase Redirect URL autorizada | ✅ (documentado) |
+| `docs/bitacora.md` | ✅ (este archivo) |
+| README con identificación, ejecución, recorrido | ✅ |
+| `.env.example` sin valores reales | ✅ |
+| `.gitignore` excluye `node_modules`, `dist`, `.env.local` | ✅ |
+| Repo privado + acceso al profe | ✅ (acceso concedido) |
 
 ---
 
-##  Historial de commits relevantes
+## Historial de commits relevantes
+
+```
 git log --oneline -20
-(Completar al final con `git log --oneline -20 > docs/commits.txt`)
+```
+
+*(Ejecutar: `git log --oneline -20 > docs/commits.txt`)*
 
 ---
 
-*Última actualización: $(date '+%2026-%10-%24')*
+*Última actualización: 2026-11-26*
