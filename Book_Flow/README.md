@@ -136,7 +136,7 @@ npm run dev
 ## Cómo ver la presentación interactiva
 
 **Opción 1: Link público (recomendado)**
-- Netlify: https://cozy-gecko-c49e61.netlify.app/presentacion.html
+- Netlify: https://cozy-gecko-c49e61.netlify.app
 - Se abre en cualquier celular/PC sin instalar nada.
 
 **Opción 2: Local (Live Server)**
